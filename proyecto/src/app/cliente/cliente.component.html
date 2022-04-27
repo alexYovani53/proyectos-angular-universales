@@ -1,0 +1,248 @@
+
+<p-toast key="toast" ></p-toast>
+<p-messages key="message" ></p-messages>
+
+<p-dialog  [(visible)]="displayDialog" [closable]="false" [style]="{width: '50vw',height:'80vh'}" class="dialogInformation">
+    <ng-template pTemplate="header">
+        <div class="dialogImage"></div>
+        
+        <div class="dialogBar">         
+            <p-menubar [model]="items"></p-menubar>
+        </div>
+    </ng-template>
+    
+    <div class="dialogContent">
+        
+        <br>
+        <div class="row">
+            <h4 class="rowTitle">Informacion Personal</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Nombre</h5>
+                    <span class="spanDes">{{selectedCliente.nombreCl}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Apellidos</h5>
+                    <span class="spanDes">{{selectedCliente.apellido1}} {{selectedCliente.apellido2}}</span>
+                </div>
+            </div>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Telefono</h5>
+                    <span class="spanDes">{{selectedCliente.telefono}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Dni</h5>
+                    <span class="spanDes">{{selectedCliente.dniCl}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">Residencia</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Codigo Postal</h5>
+                    <span class="spanDes">{{selectedCliente.codPostal}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Ciudad</h5>
+                    <span class="spanDes">{{selectedCliente.ciudad}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4 class="rowTitle">Otros</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Numero VIA</h5>
+                    <span class="spanDes">{{selectedCliente.numeroVia}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Clase VIA</h5>
+                    <span class="spanDes">{{selectedCliente.claseVia}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" (click)="cambiarVisible()" icon="pi pi-times" class="p-button-rounded p-button-danger salirDialog"></button>
+    </ng-template>
+</p-dialog>
+
+
+
+
+<div class="header-page">
+    <div class="pageRuta">
+        <h2>Universales/<h3>Clientes</h3></h2>
+    </div>        
+    <div class="pageDatos">
+        <div class="hora headerItem">
+            <i class="pi pi-clock"></i> 
+            <div class="horaData">
+                <span>horario</span>
+                <h6>18:00 hrs - 24:00 hrs</h6>
+            </div> 
+        </div>
+        <div class="correo headerItem ">
+            <i class="pi pi-envelope" ></i> 
+            <div class="horaData">
+                <span>Correo</span>
+                <h6>ajeronimo@universales.com</h6>
+            </div> 
+        </div>
+        <div class="telefono headerItem">            
+            <i class="pi pi-phone"></i> 
+            <div class="horaData">
+                <span>Telefono</span>
+                <h6>+502 34383647</h6>
+            </div> 
+        </div>
+    </div>       
+</div>
+
+<div class="padre">
+ 
+    <div *ngIf="!completo" class="load">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div *ngIf="completo" class="formulario">
+
+        <form id="crearUsuario">
+            <div class="row justify-content-center">
+            <div class="col-md-4">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="nombreCl" required [(ngModel)]="usuarioNuevo.nombreCl" [ngModelOptions]="{standalone: true}" placeholder="Nombre">
+                    </div>
+            </div> 
+            <div class="col-md-4" >                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="apellido1" required [(ngModel)]="usuarioNuevo.apellido1" [ngModelOptions]="{standalone: true}" placeholder="Apellido 1">
+                    </div>
+            </div> 
+
+            
+            <div class="col-md-4">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="apellido2" required [(ngModel)]="usuarioNuevo.apellido2" [ngModelOptions]="{standalone: true}" placeholder="Apellido 2">
+                    </div>
+                </div> 
+            </div>        
+            <div class="row justify-content-center">
+            <div class="col-md-2">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="claseVia" required [(ngModel)]="usuarioNuevo.claseVia" [ngModelOptions]="{standalone: true}" placeholder="Clase VIA">
+                    </div>
+            </div> 
+            <div class="col-md-2">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="number" class="form-control" id="numeroVia" required [(ngModel)]="usuarioNuevo.numeroVia" [ngModelOptions]="{standalone: true}" placeholder="Número VIA">
+                    </div>
+            </div> 
+            <div class="col-md-4">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="nombreVia" required [(ngModel)]="usuarioNuevo.nombreVia" [ngModelOptions]="{standalone: true}" placeholder="Nombre VIA">
+                    </div>
+            </div> 
+            <div class="col-md-4">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="ciudad" required [(ngModel)]="usuarioNuevo.ciudad" [ngModelOptions]="{standalone: true}" placeholder="Ciudad">
+                    </div>
+            </div> 
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-2">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="number" class="form-control" id="telefono" required [(ngModel)]="usuarioNuevo.telefono" [ngModelOptions]="{standalone: true}" placeholder="Telefono">
+                    </div>
+                </div> 
+                <div class="col-md-2">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="number" class="form-control" id="codPostal" required [(ngModel)]="usuarioNuevo.codPostal" [ngModelOptions]="{standalone: true}" placeholder="Codigo Postal">
+                    </div>
+                </div> 
+                <div class="col-md-8">                
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="pi pi-tag"></i></span>
+                        <input type="text" class="form-control" id="observaciones" required [(ngModel)]="usuarioNuevo.observaciones" [ngModelOptions]="{standalone: true}" placeholder="Observaciones">
+                    </div>
+                </div> 
+            </div>
+
+        </form>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-2 align-self-center">   
+                <div class="row justify-content-center btGuardarCliente">                 
+                    <button pButton type="button" class="p-button-raised p-button-rounded" icon="pi pi-check" (click)="enviarFormulario()"> </button>
+                </div>
+                <div class="row justify-content-center textGuardarCliente">
+                    <h3 style="text-align: center;">Guardar</h3>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div *ngIf="completo" class="sub tabla">  
+        <p-dialog header="Seguros" [(visible)]="display" [contentStyle]="{background: 'red !important'}" >
+            El cliente no cuenta con seguros asociados
+        </p-dialog>
+        <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+        <p-table [value]="paginadorCliente.content" [(first)]="first" 
+            styleClass="p-datatable-striped" [scrollable]="true" 
+            scrollHeight="280px" scrollDirection="both"
+            selectionMode="single" 
+            (onRowSelect)="onRowSelect($event)"   >
+
+
+            <ng-template pTemplate="caption" >
+                <h3></h3>
+                <button  [ngStyle]="{background:'var(--green-500)'}" pButton pRipple type="button" icon="pi pi-check" label="Nuevo" class="p-button-rounded" (click)="activarForm()"></button>
+            </ng-template>
+            <ng-template  pTemplate="header">
+                <tr>
+                    <th style="width:150px">Nombre</th>
+                    <th style="width:150px">Dni</th>
+                    <th style="width:150px">Apellidos</th>
+                    <th style="width:150px">Ciudad</th>
+                    <th style="width:150px">CodPostal</th>
+                    <th style="width:150px">Clase VIA</th>
+                    <th style="width:150px">Numero VIA</th>
+                    <th style="width:150px">CodPostal</th>
+                    <th style="width:150px">Telefono</th>
+                    <th style="width:150px">Observaciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cliente>
+                <tr [pSelectableRow]="cliente">
+                    <td style="width:150px" >{{cliente.nombreCl}}</td>
+                    <td style="width:150px" >{{cliente.dniCl}}</td>
+                    <td style="width:150px" >{{cliente.apellido1}} {{cliente.apellido2}}</td>
+                    <td style="width:150px" >{{cliente.ciudad}}</td>
+                    <td style="width:150px" >{{cliente.codPostal}}</td>
+                    <td style="width:150px" >{{cliente.claseVia}}</td>
+                    <td style="width:150px" >{{cliente.numeroVia}}</td>
+                    <td style="width:150px" >{{cliente.numeroVia}}</td>
+                    <td style="width:150px" >{{cliente.telefono}}</td>
+                    <td style="width:150px" >{{cliente.observaciones}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        
+        <p-paginator [first]="0" [rows]="4" [totalRecords]="paginadorCliente.totalElements" (onPageChange)="onPageChange($event)"
+        [showPageLinks]="true"></p-paginator>
+    </div>
+
+</div>

@@ -1,0 +1,336 @@
+
+/* HEADER */ 
+
+.header-page {
+    
+    background-image: url("../../assets/seguroscolvida.jpg");
+    background-size: cover;
+    
+    margin: 14px;
+    margin-bottom: 0;
+
+    border-radius: 14px;
+    
+    padding: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    height: 100px;
+}
+
+.header-page  .pageRuta{
+    width:50%;
+    text-align: start;    
+    color: rgb(255, 255, 255);
+}
+
+.header-page  .pageRuta h3{
+    display: inline-block;
+    color: rgb(50, 145, 223);
+}
+
+
+.pageDatos{
+    display: flex;
+    justify-content: flex-end;
+    background-size: cover;
+}
+
+.pageDatos .headerItem{
+    margin: 5px 15px;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+.pageDatos .headerItem h6{
+    font-size: 12px;
+}
+
+.pageDatos .headerItem i{
+    line-height: 100%;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
+/*DIALOG*/
+
+.dialogImage{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+
+    z-index: 1200;
+    transform: translate(-50%,-40px);
+
+    
+    background-image: url("../../assets/dillo.jpg") ;
+    background-size: cover;
+    border-radius: 50%;
+    
+}
+
+
+.dialogContent{
+    width: 90%;
+    margin: auto auto;
+    overflow-y: scroll;
+}
+
+.dialogBar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.dialogContent .rowTitle{
+    font-size: larger;
+    border-bottom: 1px solid rgb(180, 173, 173);
+}
+
+.dialogContent .row{
+    margin-top: 10px;
+}
+
+.dialogContent .row .col{
+    padding-left: 50px;
+}
+
+.h5Titulo{
+    margin: 0;
+    font-size: 15px;
+}
+.spanDes{
+    margin-left: 5px;
+    font-size: 13px;
+}
+.filaInfo{
+    margin-top: 10px;
+}
+
+.p-dialog-footer{
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+}
+
+
+.p-menubar{
+    margin-top: 15px !important;
+    padding: 0 !important;
+    display: flex !important;
+
+    justify-content: center !important;
+}
+
+.p-menu-list{
+    width: 100% !important;
+}
+
+.salirDialog{
+    padding: 25px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+
+
+/* CONTENIDO */
+.padre{
+    
+    background-color:#EBEDEE ;
+    
+    /* background-color:#d7d9ce ; */
+    height: 700px;
+    overflow-y: scroll;
+
+    display: grid;
+
+    padding-top: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto  500px;
+
+    grid-template-areas: 
+    "formulario"
+    "tabla";
+
+    row-gap: 15px;
+    column-gap: 15px;
+}
+
+
+.formulario{
+    display: none;
+    padding: 10px;
+    grid-area: formulario;
+    background-color: #fdfeff;
+}
+
+.formulario.activo{
+    display: block;
+    grid-area: formulario;
+}
+
+.tabla{
+    grid-area: tabla;
+    background-color: #fdfeff;
+    position: relative;
+    padding: 0 15px;
+}
+
+.formulario, .tabla{
+    border-radius: 8px;      
+}
+
+
+
+
+
+/* FORMULARIO */
+
+#crearUsuario .row{
+    margin-top: 15px;
+}
+
+
+.boton-agregar :first-child{
+    font-weight: 700;
+}
+.boton-agregar span:first-child{
+    background-color: red;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+
+
+
+
+/* TABLA*/
+.tabla .p-datatable{
+    width: 95%;
+    position: relative;
+    top: 30px;	
+    left: 50%;
+    height: 355px;
+    transform: translateX(-50%);  
+    margin-right: 15px;
+    margin-bottom: 30px;
+}
+
+.p-datatable-header{
+    font-size: 1.5em;
+    font-weight: 100;
+    padding: 15px 5px !important;
+    color: #fdfeff !important;
+    background-color: white !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.p-datatable-thead th{
+    justify-content: center !important;
+    background-color: #3F4259 !important;
+    color: white !important;
+}
+
+.p-datatable-tbody td{
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 7px 0 !important;
+}
+
+
+.p-datatable-tbody td:last-child{
+    justify-content: space-around !important;
+}
+/* 
+.p-datatable-tbody tr:hover > td{
+    background-color: rgb(70, 80, 80);
+} */
+
+
+ .p-datatable-tbody > tr.p-highlight {
+    color: white !important;
+    background-color: rgb(95, 158, 155) !important;
+}
+
+
+
+/* PAGINADOR */
+.p-paginator {
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 95%;
+    background-color: #fdfeff !important;
+    border: none;
+}
+
+.p-paginator.p-component  button{
+    
+    padding: 0 !important;
+    height: 25px !important;
+    width: 25px !important;
+    border: 1px solid black !important;
+    color:black !important;
+
+}
+
+
+.p-paginator.p-component  button:hover{
+    background-color: rgb(0,0,0) !important;
+    color: white !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #3c4450;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d8d8d8;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d8d8d8;
+  }
+
+
+
+
+.dialogContent::-webkit-scrollbar {
+    display: none;
+}

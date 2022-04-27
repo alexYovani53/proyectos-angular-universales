@@ -1,0 +1,67 @@
+<div class="container formulario">
+
+    <form id="crearPerito">
+        <div class="col-12 justify-content-center">
+
+            
+                <div class="input-group">
+                    <input type="text"  placeholder="Nombre Perito" class="form-control" id="nombrePerito" required [(ngModel)]="peritoNuevo.nombrePerito" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" placeholder="Apellido 1" class="form-control" id="apellidoPerito1" required [(ngModel)]="peritoNuevo.apellidoPerito1" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="input-group">
+                    <input type="text" placeholder="Apellido 2" class="form-control" id="apellidoPerito2" required [(ngModel)]="peritoNuevo.apellidoPerito2" [ngModelOptions]="{standalone: true}">
+                </div>
+
+           
+                <div class="input-group">
+                    <input type="number" placeholder="Telefono" class="form-control" id="telefonoContacto" required [(ngModel)]="peritoNuevo.telefonoContacto" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Tel. Oficina" class="form-control" id="telefonoOficina" required [(ngModel)]="peritoNuevo.telefonoOficina" [ngModelOptions]="{standalone: true}">
+                </div>
+
+            
+                <div class="input-group">
+                    <input type="text" placeholder="Clase Via" class="form-control" id="claseVia" required [(ngModel)]="peritoNuevo.claseVia" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" placeholder="Nombre Via" class="form-control" id="nombreVia" required [(ngModel)]="peritoNuevo.nombreVia" [ngModelOptions]="{standalone: true}">
+                </div>
+
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Numero Via" class="form-control" id="numeroVia" required [(ngModel)]="peritoNuevo.numeroVia" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Codigo Postal" class="form-control" id="codPostal" required [(ngModel)]="peritoNuevo.codPostal" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                
+                <div class="input-group">
+                    <input type="text" placeholder="Ciudad" class="form-control" id="ciudad" required [(ngModel)]="peritoNuevo.ciudad" [ngModelOptions]="{standalone: true}">
+                </div>
+
+        </div>
+        
+
+    </form>
+    <div class="row justify-content-center">
+        
+        <div class="col-5 align-self-center">   
+            <div class="row justify-content-center btGuardarCliente">                 
+                <button  pButton type="button" class="p-button-raised p-button-rounded justify-content-center p-button-warning" icon="pi pi-check" (click)="enviarFormulario()"  > </button>
+            </div>
+            <div class="row justify-content-center textGuardarCliente">
+                <h3 *ngIf="!editando" style="text-align: center;">Guardar</h3>
+                <h3 *ngIf="editando" style="text-align: center;">Actualizar</h3>
+            </div>
+        </div>
+    </div>
+</div> 

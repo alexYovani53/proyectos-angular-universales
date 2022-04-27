@@ -1,0 +1,152 @@
+
+
+
+.side-bar{
+    --tamano-completo:240px;
+    --tamano-corto:78px;
+
+    --tamano-iconos:50px;
+}
+
+.side-bar h3{
+    padding: 0;
+    margin: 0;
+}
+
+
+.side-bar{
+    background: #11101d;
+
+    width: 250px;
+    height: 100%;
+    padding: 6px 14px;
+    
+    transition: all 0.5s;
+
+}
+
+.side-bar i {
+    
+    font-size: 25px;
+
+    height: var(--tamano-iconos);
+    width: var(--tamano-iconos);
+
+    text-align: center;
+    line-height:var(--tamano-iconos);
+}
+
+
+.side-encabezado{
+    
+    width: 100%;
+    position: relative;
+}
+
+.encabezado-contenido{
+    
+    width: calc(100% - 50px);
+    
+    color: white;
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+/* 
+    opacity: 0;
+    pointer-events: none; */
+}
+
+.side-encabezado .activar {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+    font-size: 20px;
+
+    height: var(--tamano-iconos);
+    width: var(--tamano-iconos);
+
+    text-align: center;
+    line-height:var(--tamano-iconos);
+
+    color: #fff;
+}
+
+
+
+.side-lista{
+    width: 100%;
+}
+
+.side-lista .side-item{
+    width: 100%;
+
+    position: relative;
+    margin: 0 5px;
+
+}
+
+.side-lista .side-item .tooltip{
+
+    position: absolute;
+    display: none;
+
+    top: 0;
+    right: 0;
+
+    height: 35px;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    line-height: 35px;
+
+    
+}
+
+
+.side-lista.activo .side-item .tooltip{
+    display: none;
+}
+
+
+/* enlaces */
+
+.side-item .enlace{
+    font-size: 18px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+
+/* elementos a */
+.side-item a {
+    border-radius: 10px;
+    color: #fff;
+
+    text-decoration: none;
+    display: flex;
+
+    align-items: center;
+
+    transition: all 0.1s ease-in-out;
+
+    white-space: nowrap;
+
+    height: var(--tamano-iconos);
+}
+
+.side-item a:hover{
+    
+    color: #11101d;
+    background: #fff;
+}
+
+.side-item a i {
+    min-width: var(--tamano-iconos);
+    border-radius: 50%;
+    text-align: center;
+    line-height: var(--tamano-iconos);
+}

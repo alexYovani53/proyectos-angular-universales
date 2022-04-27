@@ -1,0 +1,209 @@
+
+
+<p-toast></p-toast>
+
+
+<p-dialog  [(visible)]="displayDialog" [closable]="false" [style]="{width: '70vw',height:'80vh'}" class="dialogInformation">
+    <ng-template pTemplate="header">
+        <div class="dialogImage"></div>
+        
+        <div class="dialogBar">         
+            <p-menubar [model]="items"></p-menubar>
+        </div>
+    </ng-template>
+    
+    <div class="dialogContent">
+        
+        <br>
+        <div class="row">
+            <h4 class="rowTitle">Informacion poliza</h4>
+            <div class="row filaInfo">
+                <div class="col col-2">
+                    <h5 class="h5Titulo">Numero Poliza</h5>
+                    <span class="spanDes">{{selectedSeguro.numeroPoliza}}</span> 
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">ramo</h5>
+                    <span class="spanDes">{{selectedSeguro.ramo}}</span>
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Condiciones</h5>
+                    <span class="spanDes">{{selectedSeguro.condicionesParticulares}}</span>
+                </div>
+            </div>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Fecha Inico</h5>
+                    <span class="spanDes">{{selectedSeguro.fechaInicio}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Fecha Vencimiento</h5>
+                    <span class="spanDes">{{selectedSeguro.fechaVencimiento}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">Cliente</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Dni cliente</h5>
+                    <span class="spanDes">{{selectedSeguro.dniCl}}</span> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" (click)="cambiarVisible()" icon="pi pi-times" class="p-button-rounded p-button-danger salirDialog"></button>
+    </ng-template>
+</p-dialog>
+
+
+<div class="header-page">
+    <div class="pageRuta">
+        <h2>Universales/<h3>Seguros</h3></h2>
+    </div>        
+    <div class="pageDatos">
+        <div class="hora headerItem">
+            <i class="pi pi-clock"></i> 
+            <div class="horaData">
+                <span>horario</span>
+                <h6>18:00 hrs - 24:00 hrs</h6>
+            </div> 
+        </div>
+        <div class="correo headerItem ">
+            <i class="pi pi-envelope" ></i> 
+            <div class="horaData">
+                <span>Correo</span>
+                <h6>ajeronimo@universales.com</h6>
+            </div> 
+        </div>
+        <div class="telefono headerItem">            
+            <i class="pi pi-phone"></i> 
+            <div class="horaData">
+                <span>Telefono</span>
+                <h6>+502 34383647</h6>
+            </div> 
+        </div>
+    </div>       
+</div>
+
+<div class="padre">
+    <div *ngIf="!completo" class="load">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>    
+    <div *ngIf="completo" class="container formulario">
+
+        <form id="crearSeguro">
+            <div class="col-12 justify-content-center   p-inputtext-sm">
+
+                
+                    <div class="input-group">
+                        <input type="text" placeholder="Ramo" class="form-control" id="ramo" required [(ngModel)]="seguroNuevo.ramo" [ngModelOptions]="{standalone: true}">
+                    </div>
+                
+                    <div class="input-group">
+                        <input type="text" placeholder="Condiciones" class="form-control" id="condicionesParticulares" required [(ngModel)]="seguroNuevo.condicionesParticulares" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    
+                    <div class="input-group">
+                        <p-dropdown  [options]="clientes" [(ngModel)]="seguroNuevo.cliente"  placeholder="Seleccionar cliente" optionLabel="valor"  [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                    </div>
+        
+                                            
+                    <div class="input-group" >
+                        <p-calendar  placeholder="Fecha Inicio" dateFormat="yy-mm-dd" [(ngModel)]="seguroNuevo.fechaInicio" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" [minDate]="minDate" inputId="min-max" ></p-calendar>
+                    </div>
+                        
+                    <div class="input-group">
+                        <p-calendar   placeholder="Fecha Vencimiento"  dateFormat="yy-mm-dd" [(ngModel)]="seguroNuevo.fechaVencimiento" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" [minDate]="minDate" inputId="min-max"></p-calendar>
+                    </div>
+
+            </div>
+            
+    
+        </form>
+        <div class="row justify-content-center">
+            
+            <div class="col-5 align-self-center">   
+                <div class="row justify-content-center btGuardarCliente">                 
+                    <button  pButton type="button" class="p-button-raised p-button-rounded justify-content-center p-button-warning" icon="pi pi-check" (click)="enviarFormulario()"  > </button>
+                </div>
+                <div class="row justify-content-center textGuardarCliente">
+                    <h3 style="text-align: center;">Guardar</h3>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div *ngIf="completo" class="sub tabla">
+
+        <p-table 
+            [value]="seguros" [paginator]="true" [rows]="10"  
+            styleClass="p-datatable-striped" [scrollable]="true" 
+            scrollHeight="300px" scrollDirection="both"
+            selectionMode="single" 
+            (onRowSelect)="onRowSelect($event)"  (onRowUnselect)="onRowUnselect($event)" dataKey="numeroPoliza">
+            
+            <ng-template pTemplate="caption" *ngIf="dniCliente != -1">
+                <div class="p-inputgroup">
+                    <p-menubar [model]="items">
+                        <div class="headerItem2">            
+                            <i class="fa-solid fa-person"></i>
+                            <div class="horaData">
+                                <span>Cliente</span>
+                                <h6>{{dniCliente}}</h6>
+                            </div> 
+                        </div>
+                    </p-menubar>
+                    <!-- <span class="p-inputgroup-addon bg-warning"><i class="pi pi-user"></i></span>
+                    <p-inputNumber [(ngModel)]="dniCliente" (onInput)="filtrar($event)"></p-inputNumber> -->
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr >
+                    <th style="width:150px"  pSortableColumn="numeroPoliza">Numero Poliza<p-sortIcon field="numeroPoliza"></p-sortIcon></th>
+                    <th style="width:150px">
+                                           
+                        <div class="flex justify-content-center align-items-center">
+                            DNI cl
+                            <p-columnFilter type="number" field="dniCl"  display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
+                                <ng-template pTemplate="filter"  let-value="dniCliente"  let-filter="filterCallback">
+                                    <input
+                                    id="inputtttttt"
+                                    type="number" 
+                                    pInputText 
+                                    [ngModel]="value" 
+                                    (ngModelChange)="filter($event)" 
+                                    >
+                                    
+                                </ng-template>
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th style="width:150px">Ramo</th>
+                    <th style="width:150px">Fecha Inicio</th>
+                    <th style="width:150px">Fecha Vencimiento</th>
+                    <th style="width:150px">Condiciones Particulares</th>                
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-seguro>
+                <tr [pSelectableRow]="seguro">
+                    <td  style="width:150px">{{seguro.numeroPoliza}}</td>
+                    <td  style="width:150px">{{seguro.dniCl}} </td>
+                    <td  style="width:150px">{{seguro.ramo}}</td>
+                    <td  style="width:150px">{{seguro.fechaInicio | date:'yyyy-MM-dd'}} </td>
+                    <td  style="width:150px">{{seguro.fechaVencimiento | date:'yyyy-MM-dd'}}</td>
+                    <td  style="width:150px">{{seguro.condicionesParticulares}}</td>
+                </tr>
+            </ng-template>
+    
+    
+        </p-table>
+    </div>
+
+ 
+</div>
+

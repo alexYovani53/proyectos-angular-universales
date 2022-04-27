@@ -1,0 +1,29 @@
+/* INPUTS FORMS  */ 
+
+.input-group{
+    margin-top: 20px;
+}
+
+.input-group input{
+    background-color: #121212;
+    color: white;
+}
+
+.input-group input::placeholder, .input-group .p-dropdown-label{
+    color: white !important;
+}
+
+.input-group input:focus{
+    color: white;
+    background-color: #121212;
+}
+
+
+/* BOTON DE GUARDAR */
+.btGuardarCliente {
+    margin-top: 10px;
+}
+
+.btGuardarCliente:hover ~ .textGuardarCliente{
+    color: chartreuse;
+}

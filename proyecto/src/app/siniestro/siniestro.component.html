@@ -1,0 +1,153 @@
+
+<p-toast></p-toast>
+
+<p-dialog  [(visible)]="displayDialog" [closable]="false" [style]="{width: '70vw',height:'80vh'}" class="dialogInformation">
+    <ng-template pTemplate="header">
+        <div class="dialogImage"></div>
+        
+        <div class="dialogBar">         
+            <p-menubar [model]="items"></p-menubar>
+        </div>
+    </ng-template>
+    
+    <div class="dialogContent">
+        
+        <br>
+        <div class="row">
+            <h4 class="rowTitle">Informacion</h4>
+            <div class="row filaInfo">
+                <div class="col col-2">
+                    <h5 class="h5Titulo">No. </h5>
+                    <span class="spanDes">{{selectedSiniestro.idSiniestro}}</span> 
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Fecha  </h5>
+                    <span class="spanDes">{{selectedSiniestro.fechaSiniestro |date:'yyyy-MM-dd' }}</span>
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Aceptado? </h5>
+                    <span class="spanDes">{{selectedSiniestro.aceptado}}</span>
+                </div>
+            </div><div class="row filaInfo">
+                <div class="col col-8">
+                    <h5 class="h5Titulo"> Causa</h5>
+                    <span class="spanDes">{{selectedSiniestro.causas}}</span> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">Seguro</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Seguro</h5>
+                    <span class="spanDes">{{selectedSiniestro.numeroPoliza}}</span> 
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <h4 class="rowTitle">Perito</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Perito</h5>
+                    <span class="spanDes">{{selectedSiniestro.dniPerito}}</span> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" (click)="cambiarVisible()" icon="pi pi-times" class="p-button-rounded p-button-danger salirDialog"></button>
+    </ng-template>
+</p-dialog>
+
+
+<div class="header-page">
+    <div class="pageRuta">
+        <h2>Universales/<h3>Siniestros</h3></h2>
+    </div>        
+    <div class="pageDatos">
+        <div class="hora headerItem">
+            <i class="pi pi-clock"></i> 
+            <div class="horaData">
+                <span>horario</span>
+                <h6>18:00 hrs - 24:00 hrs</h6>
+            </div> 
+        </div>
+        <div class="correo headerItem ">
+            <i class="pi pi-envelope" ></i> 
+            <div class="horaData">
+                <span>Correo</span>
+                <h6>ajeronimo@universales.com</h6>
+            </div> 
+        </div>
+        <div class="telefono headerItem">            
+            <i class="pi pi-phone"></i> 
+            <div class="horaData">
+                <span>Telefono</span>
+                <h6>+502 34383647</h6>
+            </div> 
+        </div>
+    </div>       
+</div>
+
+<div class="padre">
+    <div *ngIf="!completo" class="load">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>    
+
+    <div *ngIf="completo" class="tabla">
+
+        <p-table 
+            [value]="paginadorSiniestros.content"
+            styleClass="p-datatable-striped" [scrollable]="true" 
+            scrollHeight="300px" scrollDirection="both"
+            selectionMode="single" 
+            (onRowSelect)="onRowSelect($event)"   dataKey="idSiniestro">
+
+            <ng-template pTemplate="caption">
+                <button pButton pRipple type="button"  icon="pi pi-arrow-circle-right"  (click)="show()" label="Registrar" class="p-button-rounded"></button>
+   
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr >                    
+                    <th style="width:150px">ID</th>
+                    <th style="width:150px"  pSortableColumn="fechaSiniestro">Fecha siniestro<p-sortIcon field="fechaSiniestro"></p-sortIcon></th>
+                    <th style="width:150px">Causa</th>
+                    <th style="width:150px">Aceptado</th>
+                    <th style="width:150px">Indemnizacion</th>
+                    <th style="width:150px">Numero Poliza</th>      
+                    <th style="width:150px">DNI perito</th>           
+                    <th style="width:150px"  alignFrozen="right" pFrozenColumn></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-siniestro>
+                <tr [pSelectableRow]="siniestro">
+                    <td  style="width:150px">{{siniestro.idSiniestro}}</td>
+                    <td  style="width:150px">{{siniestro.fechaSiniestro | date:'yyyy-MM-dd'}}</td>
+                    <td  style="width:150px">{{siniestro.causas}}</td>
+                    <td  style="width:150px">{{siniestro.aceptado}}</td>
+                    <td  style="width:150px">{{siniestro.indemnizacion}}</td>
+                    <td  style="width:150px">{{siniestro.numeroPoliza}}</td>
+                    <td  style="width:150px">{{siniestro.dniPerito}}</td>
+                    <td  style="width:150px"  alignFrozen="right" pFrozenColumn>
+                        <div class="container botones-tabla">
+                            <button style="height: 28px;" pButton icon="pi pi-pencil" class="p-button-rounded p-button-success " (click)="activarEdicion(siniestro)"></button>
+                            <button style="height: 28px;" pButton icon="pi pi-trash" class="p-button-rounded p-button-warning " (click)="eliminarSiniestro(siniestro.idSiniestro)"></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+    
+    
+        </p-table>        
+        <p-paginator [first]="0" [rows]="4" [totalRecords]="paginadorSiniestros.totalElements" (onPageChange)="onPageChange($event)"
+        [showPageLinks]="true"></p-paginator>
+    </div>
+
+ 
+</div>
+

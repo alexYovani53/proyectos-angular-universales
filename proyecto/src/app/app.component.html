@@ -1,0 +1,60 @@
+
+
+
+<div class="container-fluid cerrado">
+    <div class="contenido-sidebar">        
+        <div class="side-bar">
+            <div class="side-encabezado">
+                <div class="encabezado-contenido">                
+                    <i class="pi pi-bars  activar" (click)="cambiar()"></i>    
+                    <h4>Universales</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="side-lista " >
+                <div class="side-item">
+                    <a href="cliente" (click)="pestana(0)">
+                        <i class="fa-solid fa-people-group"></i>
+                        <span class="enlace">Cliente</span>
+                    </a>
+                    <span class="tooltip">Cliente</span>
+                </div>
+                <div class="side-item">
+                    <a href="seguro" (click)="pestana(1)">
+                        <i class="fa-solid fa-s"></i>
+                        <span class="enlace">Seguro</span>
+                    </a>
+                    <span class="tooltip">Seguro</span>
+                </div>
+                <div class="side-item">
+                    <a href="compania" (click)="pestana(3)">
+                        <i class="fa-solid fa-building"></i>
+                        <span class="enlace">Compania</span>
+                    </a>
+                    <span class="tooltip">Compania</span>
+                </div>
+                <div class="side-item">
+                    <a href="siniestro" (click)="pestana(3)">
+                        <i class="fa-solid fa-house-fire"></i>
+                        <span class="enlace">Siniestro</span>
+                    </a>
+                    <span class="tooltip">Siniestro</span>
+                </div>
+                <div class="side-item">
+                    <a href="perito" (click)="pestana(4)">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span class="enlace">Perito</span>
+                    </a>
+                    <span class="tooltip">Perito</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenido-contenido">    
+        <router-outlet></router-outlet>
+    </div>
+
+</div>
+
+

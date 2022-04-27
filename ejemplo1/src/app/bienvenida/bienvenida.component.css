@@ -1,0 +1,28 @@
+
+.bpersonalizado {
+    box-shadow: 5px 2px 2px black;
+    margin: 15px;
+}
+
+.mosaicos{
+    color: white;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card{
+    margin-top: 15px;
+}
+
+.card1{
+    background-image: url("../../assets/fondo1.jpg");
+    background-size: cover;
+}
+
+.card2{
+    background-image: url("../../assets/fondo1.jpg");
+    background-size: cover;
+}
+

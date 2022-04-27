@@ -1,0 +1,58 @@
+<div class="container formulario">
+
+    <form id="crearCompania">
+        <div class="col-12 justify-content-center">
+
+            
+                <div class="input-group">
+                    <input type="text" [disabled]="editando" placeholder="Nombre compania" class="form-control" id="nombreCompania" required [(ngModel)]="companiaNueva.nombreCompania" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" placeholder="Clase Via" class="form-control" id="claseVia" required [(ngModel)]="companiaNueva.claseVia" [ngModelOptions]="{standalone: true}">
+                </div>
+
+           
+                <div class="input-group">
+                    <input type="text" placeholder="Nombre Via" class="form-control" id="nombreVia" required [(ngModel)]="companiaNueva.nombreVia" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Numero Via" class="form-control" id="numeroVia" required [(ngModel)]="companiaNueva.numeroVia" [ngModelOptions]="{standalone: true}">
+                </div>
+
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Codigo postal" class="form-control" id="codPostal" required [(ngModel)]="companiaNueva.codPostal" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Tel. Contratacion" class="form-control" id="telefonoContratacion" required [(ngModel)]="companiaNueva.telefonoContratacion" [ngModelOptions]="{standalone: true}">
+                </div>
+
+            
+                <div class="input-group">
+                    <input type="number" placeholder="Tel. Siniestros" class="form-control" id="telefonoSiniestros" required [(ngModel)]="companiaNueva.telefonoSiniestros" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" placeholder="Notas" class="form-control" id="notas" required [(ngModel)]="companiaNueva.notas" [ngModelOptions]="{standalone: true}">
+                </div>
+
+        </div>
+        
+
+    </form>
+    <div class="row justify-content-center">
+        
+        <div class="col-5 align-self-center">   
+            <div class="row justify-content-center btGuardarCliente">                 
+                <button  pButton type="button" class="p-button-raised p-button-rounded justify-content-center p-button-warning" icon="pi pi-check" (click)="enviarFormulario()"  > </button>
+            </div>
+            <div class="row justify-content-center textGuardarCliente">
+                <h3 *ngIf="!editando" style="text-align: center;">Guardar</h3>
+                <h3 *ngIf="editando" style="text-align: center;">Actualizar</h3>
+            </div>
+        </div>
+    </div>
+</div> 

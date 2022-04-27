@@ -1,0 +1,410 @@
+
+/*DIALOG*/
+
+.dialogImage{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+
+    z-index: 1200;
+    transform: translate(-50%,-40px);
+
+    
+    background-image: url("../../assets/dillo.jpg") ;
+    background-size: cover;
+    border-radius: 50%;
+    
+}
+
+
+.dialogContent{
+    width: 90%;
+    margin: auto auto;
+    overflow-y: scroll;
+}
+
+.dialogBar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.dialogContent .rowTitle{
+    font-size: larger;
+    border-bottom: 1px solid rgb(180, 173, 173);
+}
+
+.dialogContent .row{
+    margin-top: 10px;
+}
+
+.dialogContent .row .col{
+    padding-left: 50px;
+}
+
+.h5Titulo{
+    margin: 0;
+    font-size: 15px;
+}
+.spanDes{
+    margin-left: 5px;
+    font-size: 13px;
+}
+.filaInfo{
+    margin-top: 10px;
+}
+
+.p-dialog-footer{
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+}
+
+
+.p-menubar{
+    margin-top: 15px !important;
+    padding: 0 !important;
+    display: flex !important;
+
+    justify-content: center !important;
+}
+
+.p-menu-list{
+    width: 100% !important;
+}
+
+.salirDialog{
+    padding: 25px !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+
+
+
+
+/* HEADER */ 
+
+.header-page {
+    
+    background-image: url("../../assets/seguroscolvida.jpg");
+    background-size: cover;
+    
+    margin: 14px;
+    margin-bottom: 0;
+
+    border-radius: 14px;
+    
+    padding: 0 auto;
+    display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    height: 100px;
+}
+
+.header-page  .pageRuta{
+    width:45%;
+    text-align: start;    
+    color: rgb(255, 255, 255);
+}
+
+.header-page  .pageRuta h3{
+    display: inline-block;
+    color: rgb(50, 145, 223);
+}
+
+
+.pageDatos{
+    display: flex;
+    justify-content: flex-end;
+    background-size: cover;
+}
+
+.pageDatos .headerItem{
+    color: rgb(0, 0, 0);
+    margin: 5px 15px;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+.pageDatos .headerItem h6{
+    font-size: 12px;
+}
+
+.pageDatos .headerItem i{
+    line-height: 100%;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+
+
+.padre{
+    
+    background-color:#EBEDEE ;
+    height: 80%;
+
+    padding: 14px;
+
+
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows:  auto;
+
+    grid-template-areas: 
+    "formulario tabla";
+
+    row-gap: 15px;
+    column-gap: 15px;
+}
+
+.formulario{
+    grid-area: formulario;
+    background-color: #fdfeff;
+
+}
+
+.tabla{
+    grid-area: tabla;
+    background-color: #fdfeff;
+    position: relative;
+    padding: 0 15px;
+    margin-right: 15px;
+}
+
+
+.header-page, .formulario, .tabla{
+    
+    border-radius: 8px;      
+}
+
+
+
+
+
+/* LOAD ELEMENT */
+
+.load{
+    position: fixed;
+    top: 0;
+    left:0;
+    color: white;
+    background: rgb(218, 214, 214);
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 0.8;
+}
+
+.load .spinner-border{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+
+
+
+/* INPUTS FORMS  */ 
+
+.input-group{
+    margin-top: 20px;
+}
+
+.input-group input{
+    background-color: #121212;
+    color: white;
+}
+
+.input-group input::placeholder{
+    color: white !important;
+}
+
+.input-group input:focus{
+    color: white;
+    background-color: #121212;
+}
+
+
+/* BOTON DE GUARDAR */
+.btGuardarCliente {
+    margin-top: 10px;
+}
+
+.btGuardarCliente:hover ~ .textGuardarCliente{
+    color: chartreuse;
+}
+
+
+
+/*TABLA*/
+
+.p-datatable-wrapper {
+    width: auto !important;
+}
+
+.tabla .p-datatable{
+    
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);  
+    margin-right: 15px;
+
+    width: 95%;
+    border: none !important ;
+    background-color: white !important;
+}
+
+.p-datatable-header{
+    font-size: 1.5em;
+    font-weight: 100;
+    padding: 15px 5px !important;
+    color: #fdfeff !important;
+    background-color: white !important;
+    border: none !important;
+}
+
+
+.p-datatable-thead th{
+    justify-content: center !important;
+    background-color: #3F4259 !important;
+    color: white !important;
+}
+
+.p-datatable-wrapper {
+    height: auto !important;
+}
+
+.p-datatable-tbody td{
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 7px 0 !important;
+}
+/* 
+.p-datatable-tbody tr:hover > td{
+    background-color: rgb(74, 206, 206);
+} */
+
+
+ .p-datatable-tbody > tr.p-highlight {
+    color: white !important;
+    background-color: rgb(95, 158, 155) !important;
+}
+
+
+/* BOTONES CRUD */
+
+.botones-tabla{
+    width: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+.botones-tabla .p-button-rounded{
+    padding: 5px;
+    width: 28px;
+}
+
+
+/* PAGINADOR */
+.p-paginator-bottom {
+    background-color: #fdfeff !important;
+    border: none !important;    
+}
+
+.p-paginator-bottom.p-paginator.p-component.ng-star-inserted button{
+    
+    padding: 0 !important;
+    height: 25px !important;
+    width: 25px !important;
+    border: 1px solid black;
+    color:black
+
+}
+.p-paginator-bottom.p-paginator.p-component.ng-star-inserted button:hover{
+    background-color: rgb(0,0,0);
+    color: white;
+}
+ 
+
+
+
+
+/* CALENADARIO */
+
+.p-datepicker-header {
+    height: 35px !important;
+}
+
+.p-datepicker-calendar td {
+    padding: 0 !important;
+    width: 35px !important;
+    height: 35px !important;
+}
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #d8d8d8;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #3c4450;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3c4450;
+  }
+
+
+
+.p-menubar{
+    padding: 0;
+}
+
+.headerItem2 {
+    width: 150px;
+    display: flex;    
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 15px;
+    margin-top: 5px;
+    padding: 0 20px ;
+}
+
+.headerItem{
+    color: black;
+    margin: 5px 15px;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+}
+.headerItem h6, .headerItem2 h6{
+    font-size: 13px;
+}
+
+.headerItem i, .headerItem2 i{
+    line-height: 100%;
+    font-size: 20px;
+    margin-right: 5px;
+}

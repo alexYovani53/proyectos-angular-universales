@@ -1,0 +1,179 @@
+
+<p-toast></p-toast>
+
+<p-dialog  [(visible)]="displayDialog" [closable]="false" [style]="{width: '70vw',height:'80vh'}" class="dialogInformation">
+    <ng-template pTemplate="header">
+        <div class="dialogImage"></div>
+        
+        <div class="dialogBar">         
+            <p-menubar [model]="items"></p-menubar>
+        </div>
+    </ng-template>
+    
+    <div class="dialogContent">
+        
+        <br>
+        <div class="row">
+            <h4 class="rowTitle">Informacion</h4>
+            <div class="row filaInfo">
+                <div class="col col-2">
+                    <h5 class="h5Titulo">Nombre</h5>
+                    <span class="spanDes">{{selectedCompania.nombreCompania}}</span> 
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Tel. contratacion </h5>
+                    <span class="spanDes">{{selectedCompania.telefonoContratacion}}</span>
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Tel. Siniestros </h5>
+                    <span class="spanDes">{{selectedCompania.telefonoSiniestros}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">Ubicacion</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Codigo Postal</h5>
+                    <span class="spanDes">{{selectedCompania.codPostal}}</span> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">VIA</h4>
+            <div class="row filaInfo">
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Nombre Via</h5>
+                    <span class="spanDes">{{selectedCompania.nombreVia}}</span> 
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Numero Via</h5>
+                    <span class="spanDes">{{selectedCompania.numeroVia}}</span> 
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Clase Via</h5>
+                    <span class="spanDes">{{selectedCompania.claseVia}}</span> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">Seguros</h4>
+            <p-fieldset legend="Seguros" [toggleable]="true">
+                <div class="row filaInfo">
+                    <div class="col col-ms-6">
+                        <h5 class="h5Titulo">Seguros </h5>
+                        <div class="input-group">
+                            <p-dropdown  [options]="seguros" [(ngModel)]="seguroCompaniaNuevo.seguro"  placeholder="Seleccionar seguro" optionLabel="valor"  [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col col-ms-6">
+                        <h5 class="h5Titulo">Agregar </h5>                        
+                        <p-button label="Agregar" (click)="agregarSeguroCompania()" icon="pi pi-check" styleClass="p-button-sm"  class="p-button-rounded p-button-secondary"></p-button>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="card">
+                        <p-table 
+                            [value]="segurosCompaniaArray"
+                            styleClass="p-datatable-striped" [scrollable]="true" 
+                            scrollHeight="300px" 
+                            selectionMode="single"  dataKey="numeroPoliza">
+                
+                            <ng-template pTemplate="header">
+                                <tr >
+                                    <th >Seguro</th>      
+                                    <th >Fecha Inicio</th>      
+                                    <th>Fecha Vencimiento</th>               
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-seguro>
+                                <tr [pSelectableRow]="seguro">
+                                    <td  style="width:150px">{{seguro.NUMERO_POLIZA}}</td>
+                                    <td  style="width:150px">{{seguro.FECHA_INICIO | date : 'yyyy-MM-dd'}}</td>
+                                    <td  style="width:150px">{{seguro.FECHA_VENCIMIENTO | date:'yyyy-MM-dd'}}</td>
+                                </tr>
+                            </ng-template>
+                    
+                    
+                        </p-table>     
+                </div>
+            </p-fieldset>
+        </div>
+
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" (click)="cambiarVisible()" icon="pi pi-times" class="p-button-rounded p-button-danger salirDialog"></button>
+    </ng-template>
+</p-dialog>
+
+
+<div class="padre">
+    <div *ngIf="!completo" class="load">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>    
+
+    <div class="header-companias">
+        <div class="p1">           
+            <i class="fa-solid fa-s"></i>
+        </div>
+        <div class="p2">
+            <h2>Universales/<h3>Companias</h3></h2>
+        </div>        
+        <div class="p3">
+            {{fechaMostrar | date:'MMMM dd, yyyy'}}
+            
+        </div>
+    </div>
+
+    <div *ngIf="completo" class="tabla">
+
+        <p-table 
+            [value]="paginadorCompanias.content"
+            styleClass="p-datatable-striped" [scrollable]="true" 
+            scrollHeight="300px" scrollDirection="both"
+            selectionMode="single" 
+            (onRowSelect)="onRowSelect($event)"   dataKey="nombreCompania">
+
+            <ng-template pTemplate="caption">
+                <button pButton pRipple type="button"  icon="pi pi-arrow-circle-right"  (click)="show()" label="Registrar" class="p-button-rounded"></button>
+   
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr >
+                    <th style="width:150px"  pSortableColumn="nombreCompania">Nombre Compania<p-sortIcon field="nombreCompania"></p-sortIcon></th>
+                    <th style="width:150px">Clase VIA</th>
+                    <th style="width:150px">Nombre Via</th>
+                    <th style="width:150px">Numbero Via</th>
+                    <th style="width:150px">Cod Postal</th>
+                    <th style="width:150px">Tel. Contratación</th>      
+                    <th style="width:150px">Tel. Siniestros</th>      
+                    <th style="width:150px">Notas</th>               
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-compania>
+                <tr [pSelectableRow]="compania">
+                    <td  style="width:150px">{{compania.nombreCompania}}</td>
+                    <td  style="width:150px">{{compania.claseVia}}</td>
+                    <td  style="width:150px">{{compania.nombreVia}}</td>
+                    <td  style="width:150px">{{compania.numeroVia}}</td>
+                    <td  style="width:150px">{{compania.codPostal}}</td>
+                    <td  style="width:150px">{{compania.telefonoContratacion}}</td>
+                    <td  style="width:150px">{{compania.telefonoSiniestros}}</td>
+                    <td  style="width:150px">{{compania.notas}}</td>
+                </tr>
+            </ng-template>
+    
+    
+        </p-table>        
+        <p-paginator [first]="0" [rows]="4" [totalRecords]="paginadorCompanias.totalElements" (onPageChange)="onPageChange($event)"
+        [showPageLinks]="true"></p-paginator>
+    </div>
+
+ 
+</div>
+

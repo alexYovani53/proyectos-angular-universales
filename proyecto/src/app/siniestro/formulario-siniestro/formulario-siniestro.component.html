@@ -1,0 +1,52 @@
+<div class="container formulario">
+
+    <form id="crearSiniestro">
+        <div class="col-12 justify-content-center ">
+
+            
+
+                <div class="input-group">
+                    <p-calendar  placeholder="Fecha Siniestro"  dateFormat="yy-mm-dd" [(ngModel)]="siniestroNuevo.fechaSiniestro" [ngModelOptions]="{standalone: true}" [showIcon]="true" inputId="icon" [minDate]="minDate" inputId="min-max"></p-calendar>
+                </div>
+            
+                <div class="input-group">
+                    <input type="text" pInputText placeholder="Causas " class="form-control p-inputtext-sm" id="causas" required [(ngModel)]="siniestroNuevo.causas" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="input-group">
+                    <p-selectButton [options]="stateOptions" [(ngModel)]="siniestroNuevo.aceptado" optionLabel="label" optionValue="value" [ngModelOptions]="{standalone: true}"></p-selectButton>
+                   
+                </div>
+
+           
+                <div class="input-group">
+                    <input type="number"  pInputText  placeholder="Indemnizacion" class="form-control p-inputtext-sm" id="indemnizacion" required [(ngModel)]="siniestroNuevo.indemnizacion" [ngModelOptions]="{standalone: true}">
+                </div>
+
+                <div class="input-group">
+                    <p-dropdown   [options]="seguros" class=" form-control p-inputtext-sm" [(ngModel)]="siniestroNuevo.seguro"  placeholder="Seleccionar seguro" optionLabel="valor"  [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                </div>
+
+                
+                <div class="input-group">
+                    <p-dropdown  [options]="peritos" class=" form-control p-inputtext-sm" [(ngModel)]="siniestroNuevo.perito"  placeholder="Seleccionar perito" optionLabel="valor"  [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}"></p-dropdown>
+                </div>
+                          
+
+        </div>
+        
+
+    </form>
+    <div class="row justify-content-center">
+        
+        <div class="col-5 align-self-center">   
+            <div class="row justify-content-center btGuardarCliente">                 
+                <button  pButton type="button" class="p-button-raised p-button-rounded justify-content-center p-button-warning" icon="pi pi-check" (click)="enviarFormulario()"  > </button>
+            </div>
+            <div class="row justify-content-center textGuardarCliente">
+                <h3 *ngIf="!editando" style="text-align: center;">Guardar</h3>
+                <h3 *ngIf="editando" style="text-align: center;">Actualizar</h3>
+            </div>
+        </div>
+    </div>
+</div> 

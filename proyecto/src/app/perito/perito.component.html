@@ -1,0 +1,173 @@
+
+<p-toast></p-toast>
+
+
+
+<p-dialog  [(visible)]="displayDialog" [closable]="false" [style]="{width: '70vw',height:'80vh'}" class="dialogInformation">
+    <ng-template pTemplate="header">
+        <div class="dialogImage"></div>
+        
+        <div class="dialogBar">         
+            <p-menubar [model]="items"></p-menubar>
+        </div>
+    </ng-template>
+    
+    <div class="dialogContent">
+        
+        <br>
+        <div class="row">
+            <h4 class="rowTitle">Informacion personal</h4>
+            <div class="row filaInfo">
+                <div class="col col-2">
+                    <h5 class="h5Titulo">DNI perito</h5>
+                    <span class="spanDes">{{selectedPerito.dniPerito}}</span> 
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Nombre </h5>
+                    <span class="spanDes">{{selectedPerito.nombrePerito}}</span>
+                </div>
+                <div class="col col-4">
+                    <h5 class="h5Titulo">Apellidos</h5>
+                    <span class="spanDes">{{selectedPerito.apellidoPerito1}} {{selectedPerito.apellidoPerito2}}</span>
+                </div>
+            </div>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Telefono. Personal</h5>
+                    <span class="spanDes">{{selectedPerito.telefonoContacto}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Telefono. Oficina</h5>
+                    <span class="spanDes">{{selectedPerito.telefonoOficina}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">Recidencia</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Codigo Postal</h5>
+                    <span class="spanDes">{{selectedPerito.codPostal}}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Ciudad</h5>
+                    <span class="spanDes">{{selectedPerito.ciudad}}</span> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="rowTitle">VIA</h4>
+            <div class="row filaInfo">
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Nombre Via</h5>
+                    <span class="spanDes">{{selectedPerito.nombreVia}</span> 
+                </div>
+                <div class="col col-6">
+                    <h5 class="h5Titulo">Numero Via</h5>
+                    <span class="spanDes">{{selectedPerito.numeroVia}}</span> 
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple type="button" (click)="cambiarVisible()" icon="pi pi-times" class="p-button-rounded p-button-danger salirDialog"></button>
+    </ng-template>
+</p-dialog>
+
+
+<div class="header-page">
+    <div class="pageRuta">
+        <h2>Universales/<h3>Peritos</h3></h2>
+    </div>        
+    <div class="pageDatos">
+        <div class="hora headerItem">
+            <i class="pi pi-clock"></i> 
+            <div class="horaData">
+                <span>horario</span>
+                <h6>18:00 hrs - 24:00 hrs</h6>
+            </div> 
+        </div>
+        <div class="correo headerItem ">
+            <i class="pi pi-envelope" ></i> 
+            <div class="horaData">
+                <span>Correo</span>
+                <h6>ajeronimo@universales.com</h6>
+            </div> 
+        </div>
+        <div class="telefono headerItem">            
+            <i class="pi pi-phone"></i> 
+            <div class="horaData">
+                <span>Telefono</span>
+                <h6>+502 34383647</h6>
+            </div> 
+        </div>
+    </div>       
+</div>
+
+<div class="padre">
+    <div *ngIf="!completo" class="load">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>    
+
+    <div *ngIf="completo" class="tabla">
+
+        <p-table 
+            [value]="paginadorPeritos.content"
+            styleClass="p-datatable-striped" [scrollable]="true" 
+            scrollHeight="300px" scrollDirection="both"
+            selectionMode="single" 
+            (onRowSelect)="onRowSelect($event)"   dataKey="nombrePerito">
+
+            <ng-template pTemplate="caption">
+                <button pButton pRipple type="button"  icon="pi pi-arrow-circle-right"  (click)="show()" label="Registrar" class="p-button-rounded"></button>
+   
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr >                    
+                    <th style="width:150px">DNI</th>
+                    <th style="width:150px"  pSortableColumn="nombrePerito">Nombre Perito<p-sortIcon field="nombrePerito"></p-sortIcon></th>
+                    <th style="width:150px">Apellidos</th>
+                    <th style="width:150px">Tel.</th>
+                    <th style="width:150px">Tel. oficina</th>      
+                    <th style="width:150px">Clase Via</th>
+                    <th style="width:150px">nombre Via</th>         
+                    <th style="width:150px">Numero Via</th>                          
+                    <th style="width:150px">Codigo Postal</th>   
+                    <th style="width:150px">Ciudad</th>               
+                    <th style="width:150px"  alignFrozen="right" pFrozenColumn></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-perito>
+                <tr [pSelectableRow]="perito">
+                    <td  style="width:150px">{{perito.dniPerito}}</td>
+                    <td  style="width:150px">{{perito.nombrePerito}}</td>
+                    <td  style="width:150px">{{perito.apellidoPerito1}} {{perito.apellidoPerito2}}</td>
+                    <td  style="width:150px">{{perito.telefonoContacto}}</td>
+                    <td  style="width:150px">{{perito.telefonoOficina}}</td>
+                    <td  style="width:150px">{{perito.claseVia}}</td>
+                    <td  style="width:150px">{{perito.nombreVia}}</td>
+                    <td  style="width:150px">{{perito.numeroVia}}</td>
+                    <td  style="width:150px">{{perito.codPostal}}</td>
+                    <td  style="width:150px">{{perito.ciudad}}</td>
+                    <td  style="width:150px"  alignFrozen="right" pFrozenColumn>
+                        <div class="container botones-tabla">
+                            <button style="height: 28px;" pButton icon="pi pi-pencil" class="p-button-rounded p-button-success " (click)="activarEdicion(perito)"></button>
+                            <button style="height: 28px;" pButton icon="pi pi-trash" class="p-button-rounded p-button-warning " (click)="eliminarPerito(perito.dniPerito)"></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+    
+    
+        </p-table>        
+        <p-paginator [first]="0" [rows]="4" [totalRecords]="paginadorPeritos.totalElements" (onPageChange)="onPageChange($event)"
+        [showPageLinks]="true"></p-paginator>
+    </div>
+
+ 
+</div>
+

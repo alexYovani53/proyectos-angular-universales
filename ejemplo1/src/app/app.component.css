@@ -1,0 +1,18 @@
+.titulo{
+    margin-right:  5px;
+    color: white;
+}
+
+.navbar{
+    width: 100%;
+    position: absolute;
+}
+
+
+.primario{
+    width: 100%;
+    height: 500px;
+    position: relative;
+    top: 40px;
+    z-index: 1;
+}
